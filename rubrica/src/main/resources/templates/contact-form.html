@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuovo contatto</title>
+</head>
+<body>
+    <div>
+        <a href="@{/}">Home</a>
+    </div>
+    <!-- form di inserimento dei dati del contatto -->
+    <div>
+        <form method="post" th:action="@{/new}" th:object="${contactForm}">
+            <div>
+                <label>Nome:</label>
+                <input th:field="*{name}" type="text">
+            </div>
+            <div>
+                <label>Cognome:</label>
+                <input th:field="*{surname}" type="text">
+            </div>
+            <div>
+                <label>Telefono:</label>
+                <input th:field="*{phone}" type="tel">
+            </div>
+            <div>
+                <label>Email:</label>
+                <input th:field="*{email}" type="email" placeholder="email@example.com">
+            </div>
+            <div>
+                <input type="submit" value="Aggiungi">
+                <input type="reset" value="Svuota">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
