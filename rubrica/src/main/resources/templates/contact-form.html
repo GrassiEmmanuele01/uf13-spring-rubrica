@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <title>Nuovo contatto</title>
 </head>
 <body>
     <div>
-        <a href="@{/}">Home</a>
+        <a th:href="@{/}" class="btn btn-primary">Home</a>
     </div>
     <!-- form di inserimento dei dati del contatto -->
     <div>
@@ -29,10 +30,11 @@
                 <input th:field="*{email}" type="email" placeholder="email@example.com">
             </div>
             <div>
-                <input type="submit" value="Aggiungi">
-                <input type="reset" value="Svuota">
+                <input type="submit" value="Aggiungi" class="btn btn-success">
+                <input type="reset" value="Svuota" class="btn btn-secondary">
             </div>
         </form>
     </div>
 </body>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </html>
