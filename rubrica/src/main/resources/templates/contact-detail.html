@@ -7,7 +7,26 @@
     <title>Dettagli contatto</title>
 </head>
 <body>
-    <h2>Contatto creato</h2>
+    <div class="container">
+    <div class="col-3">
+
+        <!-- alert per inserimento -->
+
+    <div th:if="${newContact != null}" class="alert alert-success" role="alert"> Contatto salvato!</div>
+        <div>
+            <h2 th:text="${contact.name +' '+ contact.surname}">Contatto creato!</h2>
+        </div>
+        <div>
+            <div><b>Telefono:</b><span th:text="${contact.phone}"></span></div>
+        </div>
+        <div>
+            <div><b>E-mail:</b><span th:text="${contact.email}"></span></div>
+        </div>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Home</a>
+        </div>
+    </div>
+    </div>
 </body>
 <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </html>

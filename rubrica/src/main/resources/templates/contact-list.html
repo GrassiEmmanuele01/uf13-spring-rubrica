@@ -8,12 +8,13 @@
 </head>
 <body>
     <h1>Spring Rubrica</h1>
-    <div>
+   <div class="container">
+     <div>
         <a th:href="@{/new}" class="btn btn-primary">Nuovo Contatto</a>
     </div>
-    <div>
+    <header>
         Lista contatti
-    </div>
+    </header>
     <div th:if="${contacts}">
         <table class="table table-dark table-striped table-bordered table-hover">
             <thead class="table-primary">
@@ -35,6 +36,7 @@
             </tbody>
         </table>
     </div>
+   </div>
 
     <p th:if="${#lists.isEmpty(contacts)}">Nessun contatto presente</p>
 </body>

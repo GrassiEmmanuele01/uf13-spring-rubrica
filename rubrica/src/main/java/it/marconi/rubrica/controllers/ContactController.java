@@ -2,21 +2,29 @@ package it.marconi.rubrica.controllers;
 
 import java.util.UUID;
 
+import javax.naming.Binding;
+
+import java.net.http.HttpClient.Redirect;
 import java.util.Optional;
+
+import org.springframework.aot.hint.BindingReflectionHintsRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.marconi.rubrica.domain.Contact;
 import it.marconi.rubrica.domain.ContactForm;
 import it.marconi.rubrica.services.ContactService;
+import jakarta.validation.Valid;
 
 @Controller
 public class ContactController {
@@ -37,9 +45,19 @@ public class ContactController {
     }
 
     @PostMapping("/new")
-    public ModelAndView handleNewContact(@ModelAttribute ContactForm contactForm){
+    public ModelAndView handleNewContact(
+        @ModelAttribute @Valid ContactForm contactForm,
+        BindingResult br, //esito della validazione (subito dopo patametro da validare)
+        RedirectAttributes ra
+    ){
+        //controllo esito della validazione
+        if (br.hasErrors()){
+            return new ModelAndView("contact-form");
+        }
+
+        //aggiungo un parametro speciale che sopravvica al redirect
+        ra.addFlashAttribute("newContact",true);
         Contact c =contactService.save(contactForm);
-        // return new ModelAndView("contact-form");
         return new ModelAndView("redirect:/contact?id="+c.getId());
     }
 
