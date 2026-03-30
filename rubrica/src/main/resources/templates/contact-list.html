@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
     <title>Lista contatti</title>
 </head>
 <body>
@@ -31,7 +32,9 @@
                     <td th:text="${c.phone}"></td>
                     <td th:text="${c.email}"></td>
 
-                    <td></td>
+                    <td>
+                        <a th:href="@{'/contact/delete/'+${c.id}}" method="delete" class="btn btn-danger"> <i class="bi bi-trash3"></i> Elimina</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
