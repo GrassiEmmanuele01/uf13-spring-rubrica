@@ -56,7 +56,7 @@ public class ContactController {
             return new ModelAndView("contact-form");
         }
 
-        //aggiungo un parametro speciale che sopravvica al redirect
+        //aggiungo un parametro speciale che sopravviva al redirect
         ra.addFlashAttribute("newContact",true);
         Contact c =contactService.save(contactForm);
         return new ModelAndView("redirect:/contact?id="+c.getId());
@@ -75,9 +75,15 @@ public class ContactController {
     }
 
     @GetMapping(path = "contact/delete/{id}")
-    public ModelAndView deleteContact(@PathVariable("id") UUID contactId){
+    public ModelAndView deleteContact(
+        @PathVariable("id") 
+        UUID contactId,
+        RedirectAttributes attr
+        ){
         contactService.deleteById(contactId);
 
+        attr.addFlashAttribute("contactDeleted", true);
         return new ModelAndView("redirect:/");
+        
     }
 }

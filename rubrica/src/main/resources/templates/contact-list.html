@@ -16,6 +16,7 @@
     <header>
         Lista contatti
     </header>
+    <div th:if="${contactDeleted!=null}" class="alert alert-danger" role="alert"> Contatto eliminato!</div>
     <div th:if="${contacts}">
         <table class="table table-dark table-striped table-bordered table-hover">
             <thead class="table-primary">
